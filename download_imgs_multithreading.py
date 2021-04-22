@@ -7,9 +7,18 @@ def download_image(url):
     name = url.split('/')[-1]
     name = f'{name}.jpg'
     print(f"{name} downloading...")
-    image_data = requests.get(url).content
+
+    response = requests.get(url)
+    try:
+        response.raise_for_status()
+    except Exception as e:
+        return(e)
+
+    image_data = response.content
+
     with open(name, 'wb') as image:
         image.write(image_data)
+
     return (f"{name} downloaded.")
 
 
@@ -55,8 +64,14 @@ if __name__ == '__main__':
 
     start = time.perf_counter()
     download_images(img_urls)
-    mid = time.perf_counter()
+    finish = time.perf_counter()
+    time_taken = round(finish-start)
+
+    start = time.perf_counter()
     download_images_multithreading(img_urls)
     finish = time.perf_counter()
+    time_taken_multithreading = round(finish-start)
 
-    print(f"Completed all downloads in {finish-start} second(s).")
+    print(f"Completed process in {time_taken} second(s).")
+    print(
+        f"Completed process with multithreading in {time_taken_multithreading} second(s).")
