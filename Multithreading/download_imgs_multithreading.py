@@ -30,17 +30,17 @@ def download_images(img_urls):
 
 def download_images_multithreading(img_urls):
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        # Using submit and result
-        future_objects = [executor.submit(
-            download_image, url) for url in img_urls]
+        # # Using submit and result
+        # future_objects = [executor.submit(
+        #     download_image, url) for url in img_urls]
 
-        for f in concurrent.futures.as_completed(future_objects):
-            print(f.result())
+        # for f in concurrent.futures.as_completed(future_objects):
+        #     print(f.result())
 
-        # # Using map
-        # results = executor.map(download_image, img_urls)
-        # for result in results:
-        #     print(result)
+        # Using map
+        results = executor.map(download_image, img_urls)
+        for result in results:
+            print(result)
 
 
 if __name__ == '__main__':
@@ -62,10 +62,10 @@ if __name__ == '__main__':
         'https://images.unsplash.com/photo-1549692520-acc6669e2f0c'
     ]
 
-    # start = time.perf_counter()
-    # download_images(img_urls)
-    # finish = time.perf_counter()
-    # time_taken = round(finish-start)
+    start = time.perf_counter()
+    download_images(img_urls)
+    finish = time.perf_counter()
+    time_taken = round(finish-start)
 
     start = time.perf_counter()
     download_images_multithreading(img_urls)
