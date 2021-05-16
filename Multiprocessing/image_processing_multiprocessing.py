@@ -38,11 +38,11 @@ if __name__ == '__main__':
         'photo (8).jpg',
         'photo (9).jpg',
         'photo (10).jpg',
-        # 'photo (11).jpg',
-        # 'photo (12).jpg',
-        # 'photo (13).jpg',
-        # 'photo (14).jpg',
-        # 'photo (15).jpg'
+        'photo (11).jpg',
+        'photo (12).jpg',
+        'photo (13).jpg',
+        'photo (14).jpg',
+        'photo (15).jpg'
     ]
 
     start = time.perf_counter()
